@@ -25,6 +25,10 @@ myModule()
 
 [See details](https://github.com/KrimzenNinja/krimzen-ninja-config/blob/master/API.md)
 
+## Changelog
+
+[View Changelog](https://github.com/KrimzenNinja/krimzen-ninja-config/blob/master/CHANGELOG.md)
+
 ## License
 
 MIT © [Ryan Kotzen](https://github.com/KrimzenNinja)
