@@ -1,6 +1,7 @@
 # krimzen-ninja-config
 
 ![NPM](https://nodei.co/npm/krimzen-ninja-config.png)
+
 ![CircleCi](https://circleci.com/gh/KrimzenNinja/krimzen-ninja-config.svg?style=shield)
 ![Known Vulnerabilities](https://snyk.io/test/npm/krimzen-ninja-config/badge.svg)
 [![codecov](https://codecov.io/gh/KrimzenNinja/krimzen-ninja-config/branch/master/graph/badge.svg)](https://codecov.io/gh/KrimzenNinja/krimzen-ninja-config)
