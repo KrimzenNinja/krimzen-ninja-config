@@ -19,4 +19,13 @@ describe('initialiseConfig', () => {
         initialiseConfig(appName);
         expect(nconf.get('NODE_ENV')).toBe('test');
     });
+    it('should should throw an error if no source is provided.', () => {
+        const initialiseConfig = require('../src').default;
+        expect(() => initialiseConfig()).toThrow();
+    });
+    it('should should throw an error if source is not a string.', () => {
+        const initialiseConfig = require('../src').default;
+        const appName = 42;
+        expect(() => initialiseConfig(appName)).toThrow();
+    });
 });

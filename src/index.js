@@ -7,12 +7,18 @@ import path from 'path';
 
 /**
  * Initialises nconf using a hierarchy of sources for the source application or script.
- * The priority order for parameters is [argv, environment variables, source code files]
+ * The priority order for parameters is:
+ * * command line arguments (argv).
+ * * environment variables.
+ * * source code files stored in the ./config folder of your application.
  * Also allows for using nconf.set which will save to memory.
- * @param source string the name of the application or script that we are initialising config for.
+ * @param source the name of the application or script that we are initialising config for.
  */
 export default function initialiseConfig(source: string) {
     if (!source) {
+        throw new Error('Source is required');
+    }
+    if (typeof source !== 'string') {
         throw new Error('Source is required');
     }
     const envDefault = {
