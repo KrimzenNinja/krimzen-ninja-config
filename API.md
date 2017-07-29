@@ -6,12 +6,16 @@
 
 ### initialiseConfig
 
-[src/index.js:14-41](https://github.com/KrimzenNinja/krimzen-ninja-config/blob/f8944cedf18e51a8d73703f913b2d7aeb78a5cd3/src/index.js#L14-L41 "Source code on GitHub")
+[src/index.js:17-47](https://github.com/KrimzenNinja/krimzen-ninja-config/blob/831cb4250822b652f853eff82021ffc85300c3e3/src/index.js#L17-L47 "Source code on GitHub")
 
 Initialises nconf using a hierarchy of sources for the source application or script.
-The priority order for parameters is [argv, environment variables, source code files]
-Also allows for using nconf.set which will save to memory.
+The priority order for parameters is:
+
+-   command line arguments (argv).
+-   environment variables.
+-   source code files stored in the ./config folder of your application.
+    Also allows for using nconf.set which will save to memory.
 
 **Parameters**
 
--   `source` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** string the name of the application or script that we are initialising config for.
+-   `source` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the name of the application or script that we are initialising config for.
