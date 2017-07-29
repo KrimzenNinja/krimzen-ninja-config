@@ -1,0 +1,94 @@
+{
+  "name": "krimzen-ninja-config",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=8.1.2"
+  },
+  "description": "Module for setting up convention based config in krimzen-ninja projects",
+  "files": [
+    "lib"
+  ],
+  "main": "./lib/index.js",
+  "scripts": {
+    "clean": "rimraf lib",
+    "prebuild": "npm run clean",
+    "build": "babel src -d lib --copy-files --source-maps && npm run flow-build",
+    "flow-build": "flow-copy-source src lib",
+    "watch": "npm-watch",
+    "coverage": "npm test -- --coverage",
+    "codecov": "codecov",
+    "test": "jest",
+    "test-dependencies": "snyk test && nsp check",
+    "unit-test": "nyc mocha \"test/**/*.unit.js\"",
+    "prettier": "prettier --write --tab-width=4 --single-quote=true --print-width=120 \"{src,test}/**/*.js\"",
+    "lint": "eslint src test --fix",
+    "lint-ci": "eslint src test",
+    "flow-check": "flow check",
+    "flow": "flow",
+    "docs": "documentation readme src --section=API --github --document-exported --readme-file=\"API.md\"",
+    "patch": "npm version patch && npm publish",
+    "minor": "npm version minor && npm publish",
+    "major": "npm version major && npm publish",
+    "preversion": "npm run prettier && npm run lint && npm t && npm run test-dependencies && npm run flow-check && npm run docs && npm run build && git add . && git commit -m \"adding build artifacts\"",
+    "postpublish": "git push origin master --follow-tags && chandler push"
+  },
+  "watch": {
+    "test": "{src,test}/*.js",
+    "lint-ci": "{src,test}/*.js",
+    "flow": "{src,test}/*.js"
+  },
+  "jest": {
+    "testRegex": "/test/.*",
+    "testEnvironment": "node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KrimzenNinja/krimzen-ninja-config.git"
+  },
+  "keywords": [
+    "node",
+    "npm",
+    "es6",
+    "babel",
+    "jest",
+    "flow",
+    "flowtype",
+    "circleci",
+    "codecov",
+    "documentation",
+    "KrimZenNinja"
+  ],
+  "author": "Ryan Kotzen <potz666@gmail.com> (https://github.com/KrimzenNinja)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KrimzenNinja/krimzen-ninja-config/issues"
+  },
+  "homepage": "https://github.com/KrimzenNinja/krimzen-ninja-config#readme",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-eslint": "^7.1.1",
+    "babel-jest": "^20.0.0",
+    "babel-preset-env": "^1.5.2",
+    "babel-preset-flow": "^6.23.0",
+    "codecov": "^2.2.0",
+    "documentation": "4.0.0-rc.1",
+    "eslint": "^4.1.1",
+    "eslint-config-prettier": "^2.2.0",
+    "eslint-plugin-flowtype": "^2.29.2",
+    "eslint-plugin-flowtype-errors": "^3.0.0",
+    "eslint-plugin-node": "^5.1.0",
+    "eslint-plugin-prettier": "^2.1.2",
+    "flow-bin": "^0.50.0",
+    "flow-copy-source": "^1.2.0",
+    "jest-cli": "^20.0.0",
+    "npm-watch": "^0.2.0",
+    "nsp": "^2.6.3",
+    "prettier": "^1.4.4",
+    "rimraf": "^2.6.1",
+    "snyk": "^1.36.2"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "nconf": "^0.8.4"
+  }
+}
