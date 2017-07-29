@@ -6,7 +6,7 @@
 
 ### initialiseConfig
 
-[src/index.js:17-47](https://github.com/KrimzenNinja/krimzen-ninja-config/blob/f1539b2c80db2adc8eb127bb75552593f9663198/src/index.js#L17-L47 "Source code on GitHub")
+[src/index.js:17-47](https://github.com/KrimzenNinja/krimzen-ninja-config/blob/a33536983311eea0ba9df91a65553bccb29874cf/src/index.js#L17-L47 "Source code on GitHub")
 
 Initialises nconf using a hierarchy of sources for the source application or script.
 The priority order for parameters is:
@@ -19,3 +19,24 @@ The priority order for parameters is:
 **Parameters**
 
 -   `source` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** the name of the application or script that we are initialising config for.
+
+### get
+
+[src/index.js:53-55](https://github.com/KrimzenNinja/krimzen-ninja-config/blob/a33536983311eea0ba9df91a65553bccb29874cf/src/index.js#L53-L55 "Source code on GitHub")
+
+Gets a value out of the config store
+
+**Parameters**
+
+-   `key` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** The unique name of they key for the value
+
+### set
+
+[src/index.js:62-64](https://github.com/KrimzenNinja/krimzen-ninja-config/blob/a33536983311eea0ba9df91a65553bccb29874cf/src/index.js#L62-L64 "Source code on GitHub")
+
+Sets a value in the config store, will only exist in memory and will not persist across reboots
+
+**Parameters**
+
+-   `key` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** The unique name of the key to store the value under
+-   `value` **any** The value to store, can be any type
