@@ -28,4 +28,17 @@ describe('initialiseConfig', () => {
         const appName = 42;
         expect(() => initialiseConfig(appName)).toThrow();
     });
+    it('should export the get method.', () => {
+        const initialiseConfig = require('../src');
+        const appName = 'someApplication';
+        initialiseConfig.default(appName);
+        expect(initialiseConfig.get('isAwesome')).toBe(true);
+    });
+    it('should export the set method which should save to memory.', () => {
+        const initialiseConfig = require('../src');
+        const appName = 'someApplication';
+        initialiseConfig.default(appName);
+        initialiseConfig.set('phatLoot', 1337);
+        expect(initialiseConfig.get('phatLoot')).toBe(1337);
+    });
 });

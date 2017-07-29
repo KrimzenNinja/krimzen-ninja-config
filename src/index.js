@@ -45,3 +45,20 @@ export default function initialiseConfig(source: string) {
     util.inspect.defaultOptions.showHidden = false;
     util.inspect.defaultOptions.depth = 10;
 }
+
+/**
+ * Gets a value out of the config store
+ * @param key The unique name of they key for the value
+ */
+export function get(key: string) {
+    return nconf.get(key);
+}
+
+/**
+ * Sets a value in the config store, will only exist in memory and will not persist across reboots
+ * @param key The unique name of the key to store the value under
+ * @param value The value to store, can be any type
+ */
+export function set(key: string, value: any) {
+    return nconf.set(key, value);
+}
