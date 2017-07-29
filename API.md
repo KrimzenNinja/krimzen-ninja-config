@@ -6,7 +6,7 @@
 
 ### initialiseConfig
 
-[src/index.js:17-47](https://github.com/KrimzenNinja/krimzen-ninja-config/blob/831cb4250822b652f853eff82021ffc85300c3e3/src/index.js#L17-L47 "Source code on GitHub")
+[src/index.js:17-47](https://github.com/KrimzenNinja/krimzen-ninja-config/blob/f1539b2c80db2adc8eb127bb75552593f9663198/src/index.js#L17-L47 "Source code on GitHub")
 
 Initialises nconf using a hierarchy of sources for the source application or script.
 The priority order for parameters is:
