@@ -8,3 +8,5 @@ test/
 .gitignore
 .npmrc
 .idea/
+config/
+flow-typed/
