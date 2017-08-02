@@ -1,19 +1,9 @@
-// @flow
-
 import _ from 'lodash';
 import nconf from 'nconf';
 import util from 'util';
 import path from 'path';
 
-/**
- * The initialisation options for setting up the configuration library
- */
-type ConfigOptions = {
-    source: string,
-    configPath: string
-};
-
-const defaultConfigOptions: ConfigOptions = {
+const defaultConfigOptions = {
     source: null,
     configPath: ''
 };
@@ -27,7 +17,7 @@ const defaultConfigOptions: ConfigOptions = {
  * Also allows for using nconf.set which will save to memory.
  * @param inputOptions The options used to setup the configuration library.
  */
-export default function initialiseConfig(inputOptions: ConfigOptions) {
+export default function initialiseConfig(inputOptions) {
     _.defaults(inputOptions, defaultConfigOptions);
     if (!inputOptions.source) {
         throw new Error('inputOptions.source is required');
@@ -53,7 +43,7 @@ export default function initialiseConfig(inputOptions: ConfigOptions) {
     util.inspect.defaultOptions.depth = 10;
 }
 
-function loadConfigFromFile(filePath: string, options) {
+function loadConfigFromFile(filePath, options) {
     /* eslint-disable global-require*/
     const envFilePath = path.join(process.cwd(), options.configPath, filePath);
     const envFile = require(envFilePath);
@@ -72,7 +62,7 @@ function loadConfigFromFile(filePath: string, options) {
  * Gets a value out of the config store
  * @param key The unique name of they key for the value
  */
-export function get(key: string) {
+export function get(key) {
     return nconf.get(key);
 }
 
@@ -81,6 +71,6 @@ export function get(key: string) {
  * @param key The unique name of the key to store the value under
  * @param value The value to store, can be any type
  */
-export function set(key: string, value: any) {
+export function set(key, value) {
     return nconf.set(key, value);
 }
