@@ -9,10 +9,12 @@ import path from 'path';
  * The initialisation options for setting up the configuration library
  */
 type ConfigOptions = {
+    source: string,
     configPath: string
 };
 
 const defaultConfigOptions: ConfigOptions = {
+    source: null,
     configPath: ''
 };
 
@@ -23,18 +25,19 @@ const defaultConfigOptions: ConfigOptions = {
  * * environment variables.
  * * source code files stored in the ./config folder of your application.
  * Also allows for using nconf.set which will save to memory.
- * @param source the name of the application or script that we are initialising config for.
+ * @param inputOptions The options used to setup the configuration library.
  */
-export default function initialiseConfig(source: string, inputOptions: ConfigOptions = defaultConfigOptions) {
-    if (!source) {
-        throw new Error('Source is required');
+export default function initialiseConfig(inputOptions: ConfigOptions) {
+    _.defaults(inputOptions, defaultConfigOptions);
+    if (!inputOptions.source) {
+        throw new Error('inputOptions.source is required');
     }
-    if (typeof source !== 'string') {
+    if (typeof inputOptions.source !== 'string') {
         throw new Error('Source is required');
     }
     const internalConfig = {
         NODE_ENV: 'development',
-        source: source
+        source: inputOptions.source
     };
     nconf.argv().env().defaults(internalConfig).use('memory'); //lets us call set later on
     const environment = nconf.get('NODE_ENV');
