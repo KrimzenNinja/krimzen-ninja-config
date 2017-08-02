@@ -34,11 +34,28 @@ describe('initialiseConfig', () => {
         initialiseConfig.default(appName);
         expect(initialiseConfig.get('isAwesome')).toBe(true);
     });
-    it('should export the set method which should save to memory.', () => {
+    it('should support the older node module format', () => {
         const initialiseConfig = require('../src');
         const appName = 'someApplication';
+        process.env.NODE_ENV = 'old';
         initialiseConfig.default(appName);
-        initialiseConfig.set('phatLoot', 1337);
-        expect(initialiseConfig.get('phatLoot')).toBe(1337);
+        process.env.NODE_ENV = 'test';
+        expect(initialiseConfig.get('isAwesome')).toBe(42);
+    });
+    it('should export throw an error if the config file does not export a function', () => {
+        const initialiseConfig = require('../src');
+        const appName = 'someApplication';
+        process.env.NODE_ENV = 'fake';
+        expect(() => initialiseConfig(appName)).toThrow();
+        process.env.NODE_ENV = 'test';
+    });
+    it('should allow you to specify a different path, relative to the cwd, to the config folder', () => {
+        const initialiseConfig = require('../src');
+        const appName = 'someApplication';
+        const options = {
+            configPath: 'custom-path/more'
+        };
+        initialiseConfig.default(appName, options);
+        expect(initialiseConfig.get('isAwesome')).toBe('pimpMyRide');
     });
 });

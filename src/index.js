@@ -6,6 +6,17 @@ import util from 'util';
 import path from 'path';
 
 /**
+ * The initialisation options for setting up the configuration library
+ */
+type ConfigOptions = {
+    configPath: string
+};
+
+const defaultConfigOptions: ConfigOptions = {
+    configPath: ''
+};
+
+/**
  * Initialises nconf using a hierarchy of sources for the source application or script.
  * The priority order for parameters is:
  * * command line arguments (argv).
@@ -14,36 +25,44 @@ import path from 'path';
  * Also allows for using nconf.set which will save to memory.
  * @param source the name of the application or script that we are initialising config for.
  */
-export default function initialiseConfig(source: string) {
+export default function initialiseConfig(source: string, inputOptions: ConfigOptions = defaultConfigOptions) {
     if (!source) {
         throw new Error('Source is required');
     }
     if (typeof source !== 'string') {
         throw new Error('Source is required');
     }
-    const envDefault = {
+    const internalConfig = {
         NODE_ENV: 'development',
         source: source
     };
-    nconf.argv().env().defaults(envDefault).use('memory'); //lets us call set later on
+    nconf.argv().env().defaults(internalConfig).use('memory'); //lets us call set later on
     const environment = nconf.get('NODE_ENV');
-    //eslint-disable-next-line no-process-env
     process.env.NODE_ENV = environment;
     console.log('Environment set to ' + environment);
-    const cwd = process.cwd();
-    const options = {
-        source
-    };
-    /* eslint-disable global-require*/
-    const envFilePath = path.join(cwd, 'config/' + environment + '.js');
-    const environmentConfig = require(envFilePath).default(options);
-    const defaultEnvPath = path.join(cwd, 'config/default.js');
-    const defaultConfig = require(defaultEnvPath).default(options);
 
-    _.merge(envDefault, defaultConfig, environmentConfig);
-    nconf.defaults(envDefault);
+    const environmentConfigFromFile = loadConfigFromFile('config/' + environment + '.js', inputOptions);
+    const defaultConfigFromFile = loadConfigFromFile('config/default.js', inputOptions);
+
+    _.merge(internalConfig, defaultConfigFromFile, environmentConfigFromFile);
+    nconf.defaults(internalConfig);
     util.inspect.defaultOptions.showHidden = false;
     util.inspect.defaultOptions.depth = 10;
+}
+
+function loadConfigFromFile(filePath: string, options) {
+    /* eslint-disable global-require*/
+    const envFilePath = path.join(process.cwd(), options.configPath, filePath);
+    const envFile = require(envFilePath);
+    let config;
+    if (typeof envFile === 'function') {
+        config = envFile(options);
+    } else if (typeof envFile.default === 'function') {
+        config = envFile.default(options);
+    } else {
+        throw new Error(`Config file at ${filePath} must directly export a function`);
+    }
+    return config;
 }
 
 /**
