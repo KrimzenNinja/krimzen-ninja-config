@@ -16,6 +16,8 @@ const defaultConfigOptions = {
  * * source code files stored in the ./config folder of your application.
  * Also allows for using nconf.set which will save to memory.
  * @param inputOptions The options used to setup the configuration library.
+ * @param {string} inputOptions.source The name of the source application initialising the configuration.
+ * @param {string} [inputOptions.configPath=''] The optional path to the `config` folder. Usually this would be `cwd/config` where `cwd` is the current working directory from node's `process.cwd`.
  */
 export default function initialiseConfig(inputOptions) {
     _.defaults(inputOptions, defaultConfigOptions);
@@ -60,7 +62,7 @@ function loadConfigFromFile(filePath, options) {
 
 /**
  * Gets a value out of the config store
- * @param key The unique name of they key for the value
+ * @param {string} key The unique name of they key for the value
  */
 export function get(key) {
     return nconf.get(key);
@@ -68,8 +70,8 @@ export function get(key) {
 
 /**
  * Sets a value in the config store, will only exist in memory and will not persist across reboots
- * @param key The unique name of the key to store the value under
- * @param value The value to store, can be any type
+ * @param {string} key The unique name of the key to store the value under
+ * @param {any} value The value to store, can be any type
  */
 export function set(key, value) {
     return nconf.set(key, value);
