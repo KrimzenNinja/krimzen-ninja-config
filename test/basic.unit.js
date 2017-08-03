@@ -59,4 +59,10 @@ describe('initialiseConfig', () => {
         initialiseConfig.default(options);
         expect(initialiseConfig.get('isAwesome')).toBe('pimpMyRide');
     });
+    it('should allow you to just pass in a string if no other options are required', () => {
+        const initialiseConfig = require('../src').default;
+        const appName = 'someApplication';
+        initialiseConfig(appName);
+        expect(nconf.get('isAwesome')).toBe(true);
+    });
 });

@@ -2,6 +2,7 @@ import _ from 'lodash';
 import nconf from 'nconf';
 import util from 'util';
 import path from 'path';
+const debug = require('debug')('krimzen-ninja-config');
 
 const defaultConfigOptions = {
     source: null,
@@ -20,6 +21,11 @@ const defaultConfigOptions = {
  * @param {string} [inputOptions.configPath=''] The optional path to the `config` folder. Usually this would be `cwd/config` where `cwd` is the current working directory from node's `process.cwd`.
  */
 export default function initialiseConfig(inputOptions) {
+    if (typeof inputOptions === 'string') {
+        inputOptions = {
+            source: inputOptions
+        };
+    }
     _.defaults(inputOptions, defaultConfigOptions);
     if (!inputOptions.source) {
         throw new Error('inputOptions.source is required');
@@ -34,7 +40,7 @@ export default function initialiseConfig(inputOptions) {
     nconf.argv().env().defaults(internalConfig).use('memory'); //lets us call set later on
     const environment = nconf.get('NODE_ENV');
     process.env.NODE_ENV = environment;
-    console.log('Environment set to ' + environment);
+    debug('Environment set to ' + environment);
 
     const environmentConfigFromFile = loadConfigFromFile('config/' + environment + '.js', inputOptions);
     const defaultConfigFromFile = loadConfigFromFile('config/default.js', inputOptions);
