@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import nconf from 'nconf';
-import util from 'util';
 import path from 'path';
 const debug = require('debug')('krimzen-ninja-config');
 
