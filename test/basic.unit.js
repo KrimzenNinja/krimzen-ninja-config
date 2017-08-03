@@ -4,19 +4,19 @@ describe('initialiseConfig', () => {
     it('should merge in the values based on the NODE_ENV value', () => {
         const initialiseConfig = require('../src').default;
         const appName = 'someApplication';
-        initialiseConfig({ source: appName });
+        initialiseConfig(appName);
         expect(nconf.get('isAwesome')).toBe(true);
     });
     it('should should include the source name in the config.', () => {
         const initialiseConfig = require('../src').default;
         const appName = 'someApplication';
-        initialiseConfig({ source: appName });
+        initialiseConfig(appName);
         expect(nconf.get('source')).toBe(appName);
     });
     it('should should include the NODE_ENV value in the config.', () => {
         const initialiseConfig = require('../src').default;
         const appName = 'someApplication';
-        initialiseConfig({ source: appName });
+        initialiseConfig(appName);
         expect(nconf.get('NODE_ENV')).toBe('test');
     });
     it('should should throw an error if no source is provided.', () => {
@@ -26,19 +26,19 @@ describe('initialiseConfig', () => {
     it('should should throw an error if source is not a string.', () => {
         const initialiseConfig = require('../src').default;
         const appName = 42;
-        expect(() => initialiseConfig({ source: appName })).toThrow();
+        expect(() => initialiseConfig(appName)).toThrow();
     });
     it('should export the get method.', () => {
         const initialiseConfig = require('../src');
         const appName = 'someApplication';
-        initialiseConfig.default({ source: appName });
+        initialiseConfig.default(appName);
         expect(initialiseConfig.get('isAwesome')).toBe(true);
     });
     it('should support the older node module format', () => {
         const initialiseConfig = require('../src');
         const appName = 'someApplication';
         process.env.NODE_ENV = 'old';
-        initialiseConfig.default({ source: appName });
+        initialiseConfig.default(appName);
         process.env.NODE_ENV = 'test';
         expect(initialiseConfig.get('isAwesome')).toBe(42);
     });
@@ -46,7 +46,7 @@ describe('initialiseConfig', () => {
         const initialiseConfig = require('../src');
         const appName = 'someApplication';
         process.env.NODE_ENV = 'fake';
-        expect(() => initialiseConfig({ source: appName })).toThrow();
+        expect(() => initialiseConfig(appName)).toThrow();
         process.env.NODE_ENV = 'test';
     });
     it('should allow you to specify a different path, relative to the cwd, to the config folder', () => {
@@ -64,5 +64,21 @@ describe('initialiseConfig', () => {
         const appName = 'someApplication';
         initialiseConfig(appName);
         expect(nconf.get('isAwesome')).toBe(true);
+    });
+    it('should allow files that export an object instead of a function', () => {
+        const initialiseConfig = require('../src').default;
+        const appName = 'someApplication';
+        process.env.NODE_ENV = 'object';
+        initialiseConfig(appName);
+        process.env.NODE_ENV = 'test';
+        expect(nconf.get('isAwesome')).toBe('object');
+    });
+    it('should allow files that export an object instead of a function', () => {
+        const initialiseConfig = require('../src').default;
+        const appName = 'someApplication';
+        process.env.NODE_ENV = 'json';
+        initialiseConfig(appName);
+        process.env.NODE_ENV = 'test';
+        expect(nconf.get('isAwesome')).toBe('json');
     });
 });

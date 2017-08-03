@@ -42,8 +42,8 @@ export default function initialiseConfig(inputOptions) {
     process.env.NODE_ENV = environment;
     debug('Environment set to %s', environment);
 
-    const environmentConfigFromFile = loadConfigFromFile('config/' + environment + '.js', inputOptions);
-    const defaultConfigFromFile = loadConfigFromFile('config/default.js', inputOptions);
+    const environmentConfigFromFile = loadConfigFromFile('config/' + environment, inputOptions);
+    const defaultConfigFromFile = loadConfigFromFile('config/default', inputOptions);
 
     _.merge(internalConfig, defaultConfigFromFile, environmentConfigFromFile);
     nconf.defaults(internalConfig);
@@ -55,13 +55,14 @@ function loadConfigFromFile(filePath, options) {
     const envFilePath = path.join(process.cwd(), options.configPath, filePath);
     debug('Loading config file at %s', envFilePath);
     const envFile = require(envFilePath);
+    const payload = envFile.default || envFile;
     let config;
-    if (typeof envFile === 'function') {
-        config = envFile(options);
-    } else if (typeof envFile.default === 'function') {
-        config = envFile.default(options);
+    if (typeof payload === 'function') {
+        config = payload(options);
+    } else if (typeof payload === 'object') {
+        config = payload;
     } else {
-        throw new Error(`Config file at ${filePath} must directly export a function`);
+        throw new Error(`Config file at ${filePath} must directly export a function or object`);
     }
     return config;
 }
