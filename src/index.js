@@ -69,17 +69,21 @@ function loadConfigFromFile(filePath, options) {
 
 /**
  * Gets a value out of the config store
+ * @name get
  * @param {string} key The unique name of they key for the value
  */
-initialiseConfig.get = function get(key) {
+export function get(key) {
     return nconf.get(key);
-};
+}
+initialiseConfig.get = get;
 
 /**
  * Sets a value in the config store, will only exist in memory and will not persist across reboots
+ * @name set
  * @param {string} key The unique name of the key to store the value under
  * @param {any} value The value to store, can be any type
  */
-initialiseConfig.set = function set(key, value) {
+export function set(key, value) {
     return nconf.set(key, value);
-};
+}
+initialiseConfig.set = set;
