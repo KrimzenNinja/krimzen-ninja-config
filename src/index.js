@@ -21,6 +21,7 @@ const defaultConfigOptions = {
  * @param {string} [inputOptions.configPath=''] The optional path to the `config` folder. Usually this would be `cwd/config` where `cwd` is the current working directory from node's `process.cwd`.
  */
 export default function initialiseConfig(inputOptions) {
+    debug('Initialising configuration with options: %o', inputOptions);
     if (typeof inputOptions === 'string') {
         inputOptions = {
             source: inputOptions
@@ -40,15 +41,14 @@ export default function initialiseConfig(inputOptions) {
     nconf.argv().env().defaults(internalConfig).use('memory'); //lets us call set later on
     const environment = nconf.get('NODE_ENV');
     process.env.NODE_ENV = environment;
-    debug('Environment set to ' + environment);
+    debug('Environment set to %s', environment);
 
     const environmentConfigFromFile = loadConfigFromFile('config/' + environment + '.js', inputOptions);
     const defaultConfigFromFile = loadConfigFromFile('config/default.js', inputOptions);
 
     _.merge(internalConfig, defaultConfigFromFile, environmentConfigFromFile);
     nconf.defaults(internalConfig);
-    util.inspect.defaultOptions.showHidden = false;
-    util.inspect.defaultOptions.depth = 10;
+    debug('Configuration initialised');
 }
 
 function loadConfigFromFile(filePath, options) {
