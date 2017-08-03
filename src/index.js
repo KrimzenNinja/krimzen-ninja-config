@@ -54,6 +54,7 @@ export default function initialiseConfig(inputOptions) {
 function loadConfigFromFile(filePath, options) {
     /* eslint-disable global-require*/
     const envFilePath = path.join(process.cwd(), options.configPath, filePath);
+    debug('Loading config file at %s', envFilePath);
     const envFile = require(envFilePath);
     let config;
     if (typeof envFile === 'function') {
