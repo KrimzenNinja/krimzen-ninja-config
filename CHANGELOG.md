@@ -4,7 +4,10 @@
 
 Unreleased features to be listed here
 
-## [1.0.0](https://github.com/KrimzenNinja/krimzen-ninja-config/compare/v0.0.5...v1.0.0) (2017-08-02)
+## [1.0.1](https://github.com/KrimzenNinja/krimzen-ninja-config/compare/v1.0.0...v1.0.1) (2017-08-03)
+* Fixing the way that `get` and `set` are exported.
+
+## [1.0.0](https://github.com/KrimzenNinja/krimzen-ninja-config/compare/v0.0.5...v1.0.0) (2017-08-03)
 * Updating the code so that it takes in a config object or a string.
 * Updating the code so that you can specify a path to the `config` folder relative to cwd.
 * Removing `flow` typing library.
