@@ -6,7 +6,7 @@
 
 ### initialiseConfig
 
-[src/index.js:22-46](https://github.com/KrimzenNinja/krimzen-ninja-config/blob/1048fa59e6d6136844d8bd594bc70cb0f151dd65/src/index.js#L22-L46 "Source code on GitHub")
+[src/index.js:22-51](https://github.com/KrimzenNinja/krimzen-ninja-config/blob/b78b28abafe9a89ae2a181a661faef29ad0453cb/src/index.js#L22-L51 "Source code on GitHub")
 
 Initialises nconf using a hierarchy of sources for the source application or script.
 The priority order for parameters is:
@@ -19,12 +19,12 @@ The priority order for parameters is:
 **Parameters**
 
 -   `inputOptions`  The options used to setup the configuration library.
-    -   `inputOptions.source` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)?** The name of the source application initialising the configuration.
+    -   `inputOptions.source` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** The name of the source application initialising the configuration.
     -   `inputOptions.configPath` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** The optional path to the `config` folder. Usually this would be `cwd/config` where `cwd` is the current working directory from node's `process.cwd`. (optional, default `''`)
 
 ### get
 
-[src/index.js:67-69](https://github.com/KrimzenNinja/krimzen-ninja-config/blob/1048fa59e6d6136844d8bd594bc70cb0f151dd65/src/index.js#L67-L69 "Source code on GitHub")
+[src/index.js:74-76](https://github.com/KrimzenNinja/krimzen-ninja-config/blob/b78b28abafe9a89ae2a181a661faef29ad0453cb/src/index.js#L74-L76 "Source code on GitHub")
 
 Gets a value out of the config store
 
@@ -34,7 +34,7 @@ Gets a value out of the config store
 
 ### set
 
-[src/index.js:76-78](https://github.com/KrimzenNinja/krimzen-ninja-config/blob/1048fa59e6d6136844d8bd594bc70cb0f151dd65/src/index.js#L76-L78 "Source code on GitHub")
+[src/index.js:83-85](https://github.com/KrimzenNinja/krimzen-ninja-config/blob/b78b28abafe9a89ae2a181a661faef29ad0453cb/src/index.js#L83-L85 "Source code on GitHub")
 
 Sets a value in the config store, will only exist in memory and will not persist across reboots
 
