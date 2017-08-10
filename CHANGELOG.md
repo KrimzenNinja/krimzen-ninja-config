@@ -3,6 +3,8 @@
 ## [Unreleased](https://github.com/KrimzenNinja/krimzen-ninja-config/compare/v0.0.2...HEAD)
 
 Unreleased features to be listed here
+## [1.1.0](https://github.com/KrimzenNinja/krimzen-ninja-config/compare/v1.0.2...v1.1.0) (2017-08-10)
+* Updating the name of the source application from `source` to `name`.
 
 ## [1.0.2](https://github.com/KrimzenNinja/krimzen-ninja-config/compare/v1.0.0...v1.0.2) (2017-08-03)
 * Updating the way that `get` and `set` are exported to use both approaches, directly and via the function.

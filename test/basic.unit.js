@@ -9,7 +9,7 @@ describe('initialiseConfig', () => {
         const initialiseConfig = require('../src').default;
         const appName = 'someApplication';
         initialiseConfig(appName);
-        expect(initialiseConfig.get('source')).toBe(appName);
+        expect(initialiseConfig.get('name')).toBe(appName);
     });
     it('should should include the NODE_ENV value in the config.', () => {
         const initialiseConfig = require('../src').default;
@@ -51,7 +51,7 @@ describe('initialiseConfig', () => {
         const initialiseConfig = require('../src').default;
         const appName = 'someApplication';
         const options = {
-            source: appName,
+            name: appName,
             configPath: 'custom-path/more'
         };
         initialiseConfig(options);
