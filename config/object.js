@@ -1,3 +1,4 @@
-export default {
+'use strict'
+module.exports = {
     isAwesome: 'object'
-};
+}

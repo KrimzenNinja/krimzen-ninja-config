@@ -1,5 +1,7 @@
-export default function(options) {
+'use strict'
+
+module.exports = function(options) {
     return {
         isAwesome: false
-    };
+    }
 }

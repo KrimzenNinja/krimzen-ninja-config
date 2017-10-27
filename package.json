@@ -17,7 +17,7 @@
     "unit-test": "nyc mocha \"test/**/*.unit.js\"",
     "prettier": "prettier --write --tab-width=4 --single-quote=true --print-width=100 --no-semi \"{src,test}/**/*.js\"",
     "lint": "npm run lint-ci -- --fix",
-    "lint-ci": "eslint \"src/**/*.js\" \"test/**/*.js\"",
+    "lint-ci": "eslint \"src/**/*.js\" \"test/**/*.js\" \"config/**/*.js\"",
     "docs": "documentation readme src --section=API --github --document-exported --readme-file=\"API.md\"",
     "patch": "npm version patch && npm publish",
     "minor": "npm version minor && npm publish",
