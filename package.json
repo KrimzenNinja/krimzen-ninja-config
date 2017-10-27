@@ -18,11 +18,11 @@
     "prettier": "prettier --write --tab-width=4 --single-quote=true --print-width=100 --no-semi \"{src,test}/**/*.js\"",
     "lint": "npm run lint-ci -- --fix",
     "lint-ci": "eslint \"src/**/*.js\" \"test/**/*.js\" \"config/**/*.js\"",
-    "docs": "documentation readme src --section=API --github --document-exported --readme-file=\"API.md\"",
+    "docs": "documentation build src/index.js --github --format md --output \"API.md\"",
     "patch": "npm version patch && npm publish",
     "minor": "npm version minor && npm publish",
     "major": "npm version major && npm publish",
-    "preversion": "npm run prettier && npm run lint && npm t && npm run test-dependencies && npm run docs && npm run build && git add . && git commit -m \"adding build artifacts\"",
+    "preversion": "npm run prettier && npm run lint && npm t && npm run test-dependencies && npm run docs && git add . && git commit -m \"adding build artifacts\"",
     "postpublish": "git push origin master --follow-tags && chandler push"
   },
   "watch": {
@@ -53,7 +53,7 @@
   "homepage": "https://github.com/KrimzenNinja/krimzen-ninja-config#readme",
   "devDependencies": {
     "codecov": "^2.2.0",
-    "documentation": "4.0.0-rc.1",
+    "documentation": "^5.3.3",
     "eslint": "^4.1.1",
     "eslint-config-prettier": "^2.2.0",
     "eslint-plugin-node": "^5.2.1",
