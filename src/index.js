@@ -1,12 +1,14 @@
-import _ from 'lodash';
-import nconf from 'nconf';
-import path from 'path';
-const debug = require('debug')('krimzen-ninja-config');
+'use strict'
+
+const _ = require('lodash')
+const nconf = require('nconf')
+const path = require('path')
+const debug = require('debug')('krimzen-ninja-config')
 
 const defaultConfigOptions = {
     name: null,
     configPath: ''
-};
+}
 
 /**
  * Initialises nconf using a hierarchy of sources for the source application or script.
@@ -19,52 +21,56 @@ const defaultConfigOptions = {
  * @param {string} inputOptions.name The name of the source application initialising the configuration.
  * @param {string} [inputOptions.configPath=''] The optional path to the `config` folder. Usually this would be `cwd/config` where `cwd` is the current working directory from node's `process.cwd`.
  */
-export default function initialiseConfig(inputOptions) {
-    debug('Initialising configuration with options: %o', inputOptions);
+function initialiseConfig(inputOptions) {
+    debug('Initialising configuration with options: %o', inputOptions)
     if (typeof inputOptions === 'string') {
         inputOptions = {
             name: inputOptions
-        };
+        }
     }
-    _.defaults(inputOptions, defaultConfigOptions);
+    _.defaults(inputOptions, defaultConfigOptions)
     if (!inputOptions.name) {
-        throw new Error('inputOptions.source is required');
+        throw new Error('inputOptions.source is required')
     }
     if (typeof inputOptions.name !== 'string') {
-        throw new Error('Source is required');
+        throw new Error('Source is required')
     }
     const internalConfig = {
         NODE_ENV: 'development',
         name: inputOptions.name
-    };
-    nconf.argv().env().defaults(internalConfig).use('memory'); //lets us call set later on
-    const environment = nconf.get('NODE_ENV');
-    process.env.NODE_ENV = environment;
-    debug('Environment set to %s', environment);
+    }
+    nconf
+        .argv()
+        .env()
+        .defaults(internalConfig)
+        .use('memory') //lets us call set later on
+    const environment = nconf.get('NODE_ENV')
+    process.env.NODE_ENV = environment
+    debug('Environment set to %s', environment)
 
-    const environmentConfigFromFile = loadConfigFromFile('config/' + environment, inputOptions);
-    const defaultConfigFromFile = loadConfigFromFile('config/default', inputOptions);
+    const environmentConfigFromFile = loadConfigFromFile('config/' + environment, inputOptions)
+    const defaultConfigFromFile = loadConfigFromFile('config/default', inputOptions)
 
-    _.merge(internalConfig, defaultConfigFromFile, environmentConfigFromFile);
-    nconf.defaults(internalConfig);
-    debug('Configuration initialised');
+    _.merge(internalConfig, defaultConfigFromFile, environmentConfigFromFile)
+    nconf.defaults(internalConfig)
+    debug('Configuration initialised')
 }
 
 function loadConfigFromFile(filePath, options) {
     /* eslint-disable global-require*/
-    const envFilePath = path.join(process.cwd(), options.configPath, filePath);
-    debug('Loading config file at %s', envFilePath);
-    const envFile = require(envFilePath);
-    const payload = envFile.default || envFile;
-    let config;
+    const envFilePath = path.join(process.cwd(), options.configPath, filePath)
+    debug('Loading config file at %s', envFilePath)
+    const envFile = require(envFilePath)
+    const payload = envFile.default || envFile
+    let config
     if (typeof payload === 'function') {
-        config = payload(options);
+        config = payload(options)
     } else if (typeof payload === 'object') {
-        config = payload;
+        config = payload
     } else {
-        throw new Error(`Config file at ${filePath} must directly export a function or object`);
+        throw new Error(`Config file at ${filePath} must directly export a function or object`)
     }
-    return config;
+    return config
 }
 
 /**
@@ -72,10 +78,10 @@ function loadConfigFromFile(filePath, options) {
  * @name get
  * @param {string} key The unique name of they key for the value
  */
-export function get(key) {
-    return nconf.get(key);
+function get(key) {
+    return nconf.get(key)
 }
-initialiseConfig.get = get;
+initialiseConfig.get = get
 
 /**
  * Sets a value in the config store, will only exist in memory and will not persist across reboots
@@ -83,7 +89,9 @@ initialiseConfig.get = get;
  * @param {string} key The unique name of the key to store the value under
  * @param {any} value The value to store, can be any type
  */
-export function set(key, value) {
-    return nconf.set(key, value);
+function set(key, value) {
+    return nconf.set(key, value)
 }
-initialiseConfig.set = set;
+initialiseConfig.set = set
+
+module.exports = initialiseConfig
