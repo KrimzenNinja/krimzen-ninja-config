@@ -3,6 +3,9 @@
 ## [Unreleased](https://github.com/KrimzenNinja/krimzen-ninja-config/compare/v0.0.2...HEAD)
 
 Unreleased features to be listed here
+## [2.0.0](https://github.com/KrimzenNinja/krimzen-ninja-config/compare/v1.0.2...v1.1.0) (2017-08-10)
+* Removing all of the babel traspilation code, now publishing with `module.exports` rather than `import`/`export` to allow older code bases to use it. This also simplifies the dev process. Also upgraded a few packages.
+
 ## [1.1.0](https://github.com/KrimzenNinja/krimzen-ninja-config/compare/v1.0.2...v1.1.0) (2017-08-10)
 * Updating the name of the source application from `source` to `name`.
 
