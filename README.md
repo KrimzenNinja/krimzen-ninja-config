@@ -1,5 +1,7 @@
 # krimzen-ninja-config
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/KrimzenNinja/krimzen-ninja-config.svg)](https://greenkeeper.io/)
+
 ![NPM](https://nodei.co/npm/krimzen-ninja-config.png)
 
 ![CircleCi](https://circleci.com/gh/KrimzenNinja/krimzen-ninja-config.svg?style=shield)
