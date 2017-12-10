@@ -4,7 +4,7 @@ const _ = require('lodash')
 const nconf = require('nconf')
 const path = require('path')
 const debug = require('debug')('krimzen-ninja-config')
-
+let initialised = false
 const defaultConfigOptions = {
     name: null,
     configPath: ''
@@ -17,12 +17,12 @@ const defaultConfigOptions = {
  * * environment variables.
  * * source code files stored in the ./config folder of your application.
  * Also allows for using nconf.set which will save to memory.
- * @name initialiseConfig
+ * @name initialise
  * @param inputOptions The options used to setup the configuration library.
  * @param {string} inputOptions.name The name of the source application initialising the configuration.
  * @param {string} [inputOptions.configPath=''] The optional path to the `config` folder. Usually this would be `cwd/config` where `cwd` is the current working directory from node's `process.cwd`.
  */
-function initialiseConfig(inputOptions) {
+function initialise(inputOptions) {
     debug('Initialising configuration with options: %o', inputOptions)
     if (typeof inputOptions === 'string') {
         inputOptions = {
@@ -55,6 +55,7 @@ function initialiseConfig(inputOptions) {
     _.merge(internalConfig, defaultConfigFromFile, environmentConfigFromFile)
     nconf.defaults(internalConfig)
     debug('Configuration initialised')
+    initialised = true
 }
 
 function loadConfigFromFile(filePath, options) {
@@ -74,12 +75,19 @@ function loadConfigFromFile(filePath, options) {
     return config
 }
 
+function ensureInitialised(methodName) {
+    if (!initialised) {
+        throw new Error('You must call initialise before calling ' + methodName)
+    }
+}
+
 /**
  * Gets a value out of the config store
  * @name get
  * @param {string} key The unique name of they key for the value
  */
-initialiseConfig.get = function get(key) {
+function get(key) {
+    ensureInitialised('get')
     return nconf.get(key)
 }
 
@@ -90,8 +98,13 @@ initialiseConfig.get = function get(key) {
  * @param {any} value The value to store, can be any type
  */
 
-initialiseConfig.set = function set(key, value) {
+function set(key, value) {
+    ensureInitialised('set')
     return nconf.set(key, value)
 }
 
-module.exports = initialiseConfig
+module.exports = {
+    initialise,
+    get,
+    set
+}
