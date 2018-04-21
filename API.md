@@ -51,10 +51,10 @@ Sets a value in the config store, will only exist in memory and will not persist
 
 [3]: #set
 
-[4]: https://github.com/KrimzenNinja/krimzen-ninja-config/blob/8dfc61db4ffa20f4346c20a5573379b76d43ad1a/src/index.js#L29-L63 "Source code on GitHub"
+[4]: https://github.com/KrimzenNinja/krimzen-ninja-config/blob/84cbc7b678e2759f373123d6d81e12631cd838a6/src/index.js#L29-L63 "Source code on GitHub"
 
 [5]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
 
-[6]: https://github.com/KrimzenNinja/krimzen-ninja-config/blob/8dfc61db4ffa20f4346c20a5573379b76d43ad1a/src/index.js#L99-L102 "Source code on GitHub"
+[6]: https://github.com/KrimzenNinja/krimzen-ninja-config/blob/84cbc7b678e2759f373123d6d81e12631cd838a6/src/index.js#L99-L102 "Source code on GitHub"
 
-[7]: https://github.com/KrimzenNinja/krimzen-ninja-config/blob/8dfc61db4ffa20f4346c20a5573379b76d43ad1a/src/index.js#L111-L114 "Source code on GitHub"
+[7]: https://github.com/KrimzenNinja/krimzen-ninja-config/blob/84cbc7b678e2759f373123d6d81e12631cd838a6/src/index.js#L111-L114 "Source code on GitHub"
