@@ -3,6 +3,10 @@
 ## [Unreleased](https://github.com/KrimzenNinja/krimzen-ninja-config/compare/v0.0.2...HEAD)
 
 Unreleased features to be listed here
+## [2.0.3](https://github.com/KrimzenNinja/krimzen-ninja-config/compare/v2.0.2...v2.0.3) (2017-08-10)
+* Adding semicolons back to linter due to immediately executing functions.
+* Adding the ability to pass in config overrides for env and argv
+
 ## [2.0.0](https://github.com/KrimzenNinja/krimzen-ninja-config/compare/v1.0.2...v1.1.0) (2017-08-10)
 * Removing all of the babel traspilation code, now publishing with `module.exports` rather than `import`/`export` to allow older code bases to use it. This also simplifies the dev process. Also upgraded a few packages.
 
