@@ -41,7 +41,7 @@ function initialise(inputOptions) {
         throw new Error('Source is required');
     }
     const internalConfig = {
-        NODE_ENV: 'development',
+        NODE_ENV: process.env.NODE_ENV || 'development',
         name: inputOptions.name
     };
     nconf
@@ -66,7 +66,13 @@ function loadConfigFromFile(filePath, options) {
     /* eslint-disable global-require*/
     const envFilePath = path.join(process.cwd(), options.configPath, filePath);
     debug('Loading config file at %s', envFilePath);
-    const envFile = require(envFilePath);
+    let envFile;
+    try {
+        envFile = require(envFilePath);
+    } catch (err) {
+        console.warn(err);
+        return {};
+    }
     const payload = envFile.default || envFile;
     let config;
     if (typeof payload === 'function') {

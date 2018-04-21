@@ -81,4 +81,11 @@ describe('config', () => {
         process.env.NODE_ENV = 'test';
         expect(config.get('isAwesome')).toBe('json');
     });
+    it('should not throw an error if the config file does not exist', () => {
+        const config = require('../src');
+        const appName = 'someApplication';
+        process.env.NODE_ENV = 'zomg-does-not-exit';
+        config.initialise(appName);
+        expect(config.get('isAwesome')).toBe(false);
+    });
 });
