@@ -2,13 +2,13 @@
 
 ### Table of Contents
 
--   [initialise](#initialise)
--   [get](#get)
--   [set](#set)
+-   [initialise][1]
+-   [get][2]
+-   [set][3]
 
 ## initialise
 
-[src/index.js:8-11](https://github.com/KrimzenNinja/krimzen-ninja-config/blob/065b968d8621d6d3286b9e8718fcc98e87875aa7/src/index.js#L8-L11 "Source code on GitHub")
+[src/index.js:29-63][4]
 
 Initialises nconf using a hierarchy of sources for the source application or script.
 The priority order for parameters is:
@@ -21,26 +21,40 @@ The priority order for parameters is:
 **Parameters**
 
 -   `inputOptions`  The options used to setup the configuration library.
-    -   `inputOptions.name` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** The name of the source application initialising the configuration.
-    -   `inputOptions.configPath` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** The optional path to the `config` folder. Usually this would be `cwd/config` where `cwd` is the current working directory from node's `process.cwd`. (optional, default `''`)
+    -   `inputOptions.name` **[string][5]** The name of the source application initialising the configuration.
+    -   `inputOptions.configPath` **[string][5]** The optional path to the `config` folder. Usually this would be `cwd/config` where `cwd` is the current working directory from node's `process.cwd`. (optional, default `''`)
 
 ## get
 
-[src/index.js:89-92](https://github.com/KrimzenNinja/krimzen-ninja-config/blob/065b968d8621d6d3286b9e8718fcc98e87875aa7/src/index.js#L89-L92 "Source code on GitHub")
+[src/index.js:99-102][6]
 
 Gets a value out of the config store
 
 **Parameters**
 
--   `key` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** The unique name of they key for the value
+-   `key` **[string][5]** The unique name of they key for the value
 
 ## set
 
-[src/index.js:101-104](https://github.com/KrimzenNinja/krimzen-ninja-config/blob/065b968d8621d6d3286b9e8718fcc98e87875aa7/src/index.js#L101-L104 "Source code on GitHub")
+[src/index.js:111-114][7]
 
 Sets a value in the config store, will only exist in memory and will not persist across reboots
 
 **Parameters**
 
--   `key` **[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)** The unique name of the key to store the value under
+-   `key` **[string][5]** The unique name of the key to store the value under
 -   `value` **any** The value to store, can be any type
+
+[1]: #initialise
+
+[2]: #get
+
+[3]: #set
+
+[4]: https://github.com/KrimzenNinja/krimzen-ninja-config/blob/8dfc61db4ffa20f4346c20a5573379b76d43ad1a/src/index.js#L29-L63 "Source code on GitHub"
+
+[5]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+
+[6]: https://github.com/KrimzenNinja/krimzen-ninja-config/blob/8dfc61db4ffa20f4346c20a5573379b76d43ad1a/src/index.js#L99-L102 "Source code on GitHub"
+
+[7]: https://github.com/KrimzenNinja/krimzen-ninja-config/blob/8dfc61db4ffa20f4346c20a5573379b76d43ad1a/src/index.js#L111-L114 "Source code on GitHub"
