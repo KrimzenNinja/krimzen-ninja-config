@@ -64,7 +64,7 @@
     "npm-watch": "^0.3.0",
     "nsp": "3.2.1",
     "prettier": "1.12.1",
-    "snyk": "1.80.0"
+    "snyk": "1.95.1"
   },
   "dependencies": {
     "debug": "^3.1.0",
