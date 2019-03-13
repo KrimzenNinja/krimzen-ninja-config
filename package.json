@@ -54,7 +54,7 @@
   "homepage": "https://github.com/KrimzenNinja/krimzen-ninja-config#readme",
   "devDependencies": {
     "codecov": "3.0.1",
-    "documentation": "6.3.3",
+    "documentation": "9.3.1",
     "eslint": "4.19.1",
     "eslint-config-prettier": "^2.2.0",
     "eslint-plugin-node": "6.0.1",
